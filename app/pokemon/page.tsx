@@ -44,7 +44,7 @@ async function getPokemonImage(name: string): Promise<string | null> {
 
   if (!res.ok) return null;
 
-  const data: PokemonApi = await res.json();
+  const data: any = await res.json();
   return data.sprites.front_default;
 }
 
