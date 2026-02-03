@@ -16,7 +16,7 @@ export default function PokemonLayout({
                 {pokemons.map(p => (
                     <Link
                         key={p}
-                        href={`/pokemonv0/${p}`}
+                        href={`/pokemon/${p}`}
                         className="bg-red-600 text-white p-4 flex gap-3 justify-center font-semibold capitalize
                         px-4 py-2 rounded-xl shadow-md hover:scale-105 transition"
                     >

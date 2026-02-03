@@ -18,6 +18,17 @@ const pokemons = [
 
 type PokemonApi = {
   sprites: {
+    front_default: string;
+    versions: {
+      "generation-v": {
+        "black-white": {
+          front_default: string;
+          animated: {
+            front_default: string;
+          };
+        };
+      };
+    };
     other: {
       "official-artwork": {
         front_default: string;
@@ -25,7 +36,6 @@ type PokemonApi = {
     };
   };
 };
-
 async function getPokemonImage(name: string): Promise<string | null> {
   const res = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${name}`,
@@ -35,7 +45,7 @@ async function getPokemonImage(name: string): Promise<string | null> {
   if (!res.ok) return null;
 
   const data: PokemonApi = await res.json();
-  return data.sprites.versions["generation-v"]["black-white"].front_default
+  return data.sprites.front_default;
 }
 
 export default async function PokemonPage() {
@@ -51,7 +61,7 @@ export default async function PokemonPage() {
       {cards.map(({ name, image }) => (
         <Link
           key={name}
-          href={`/pokemonv0/${name}`}
+          href={`/pokemon/${name}`}
           className="min-w-62.5 shrink-0 m-4"
         >
           <div className="text-center flex flex-col gap-2 justify-center bg-white dark:bg-slate-800 rounded-lg shadow-md hover:shadow-lg transition-transform hover:scale-105 duration-200">
